@@ -1,0 +1,33 @@
+<html>
+    <head>
+        <title>App Enquetes</title>
+    </head>
+    <body>
+        <h1>Aplicação de Enquetes - DSWeb 2024.1</h1>
+        <h2>Enquete #{{ enquete.id }}</h2>
+        <h2>{{ enquete.texto_pergunta }}</h2>
+        <p><i>{{ enquete.data_publicacao }}</i></p>
+        {% if error%}
+        <dt><b>Erro: {{ error }}</b></dt>
+        {% endif %}
+        <p>Selecione a alternativa</p>
+        <form action = "{% url 'enquetes:votacao' enquete.id %}"
+              method="post">
+            {% csrf_token %}
+        <ul>
+            {% for alt in enquete.alternativa_set.all %}
+            <li>
+                <input type="radio" name="escolha" value="{{ alt.id }}"
+                    id="alt{{ forloop.counter }}"/>
+                <label for="alt{{ forloop.counter }}">
+                    {{ alt.texto_alternativa }}
+                </label>
+            </li>
+            {% endfor %}
+        </ul>
+        <input type="submit" value="Registre seu voto">
+        </form>
+        <hr>
+        <a href="{% url 'enquetes:index' %}">Voltar</a>
+    </body>
+</html>
