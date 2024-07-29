@@ -1,7 +1,9 @@
+{% load static %}
 <html>
     <head>
         <title>App Enquetes</title>
     </head>
+    <link rel="stylesheet" type="text/css" href="{% static 'enquetes/style.css' %}">
     <body>
         <h1>Resultado da enquete - DSWeb 2024.1</h1>
         <h2>Enquete #{{ pergunta.id }}</h2>
@@ -20,7 +22,7 @@
             {% endfor %}
         </ul>
         <hr>
-        <a href="{% url 'enquetes:votacao' pergunta.id %}">Votar Novamente</a>
-        <a href="{% url 'enquetes:index' %}">Voltar</a>
+        <a href="{% url 'enquetes:votacao' pergunta.id %}"><b>Votar Novamente</b></a>
+        <a href="{% url 'enquetes:index' %}"><b>Voltar</b></a>
     </body>
 </html>
