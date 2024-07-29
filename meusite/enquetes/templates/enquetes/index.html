@@ -2,14 +2,17 @@
     <head>
         <title>App Enquetes</title>
     </head>
+    {% load static %}
+
+    <link rel="stylesheet" type="text/css" href="{% static 'enquetes/style.css' %}">
     <body>
         <h1>Aplicação de <u>Enquetes</u></h1> <h2>Matéria: <u>DSWeb</u></h2> <h2>Semestre: <u>2024.1</u></h2> <h2>Nome do aluno: <u>Victor Paiva Passos</u></h2> <h2>Matrícula: <u>20231014040042</u></h2>
-    {% if lista_ultima_pergunta %}
+    {% if pergunta_list %}
     <h2>Lista das Enquetes Cadastradas:</h2>
     <ul>
-        {% for pergunta in lista_ultima_pergunta %}
+        {% for pergunta in pergunta_list %}
         <li>
-            <a href="{% url 'enquetes:detalhe' pergunta.id %}/">
+            <a href="{% url 'enquetes:detalhes' pergunta.id %}">
                 {{ pergunta.texto_pergunta }}
             </a>
         </li>

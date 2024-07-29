@@ -10,6 +10,9 @@ class Pergunta(models.Model):
         return self.texto_pergunta
     def foi_publicado_recentemente(self):
         return self.data_publicacao >= timezone.now() - datetime.timedelta(days=1)
+    foi_publicado_recentemente.admin_order_field = 'data_publicacao'
+    foi_publicado_recentemente.boolean = True
+    foi_publicado_recentemente.short_description = 'É recente?'
 
 
 class Alternativa(models.Model):

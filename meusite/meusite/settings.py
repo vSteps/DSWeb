@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^oh9dcf+c6_mpk7)@*3x8me3&x%o11-ph69^6jrf$8zmm-n+b1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['VictorSteps.pythonanywhere.com']
+ALLOWED_HOSTS = ['VictorSteps.pythonanywhere.com', 'localhost',]
 
 
 # Application definition
@@ -116,7 +116,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
-
+#STATIC_ROOT = '/home/victorsteps/meusite/static'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 STATIC_URL = 'static/'
 
 # Default primary key field type

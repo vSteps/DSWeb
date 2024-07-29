@@ -4,18 +4,18 @@
     </head>
     <body>
         <h1>Aplicação de Enquetes - DSWeb 2024.1</h1>
-        <h2>Enquete #{{ enquete.id }}</h2>
-        <h2>{{ enquete.texto_pergunta }}</h2>
-        <p><i>{{ enquete.data_publicacao }}</i></p>
+        <h2>Enquete #{{ pergunta.id }}</h2>
+        <h2>{{ pergunta.texto_pergunta }}</h2>
+        <p><i>{{ pergunta.data_publicacao }}</i></p>
         {% if error%}
         <dt><b>Erro: {{ error }}</b></dt>
         {% endif %}
         <p>Selecione a alternativa</p>
-        <form action = "{% url 'enquetes:votacao' enquete.id %}"
-              method="post">
+         <form action="{% url 'enquetes:votacao' pergunta.id %}"
+            method="post">
             {% csrf_token %}
         <ul>
-            {% for alt in enquete.alternativa_set.all %}
+            {% for alt in pergunta.alternativa_set.all %}
             <li>
                 <input type="radio" name="escolha" value="{{ alt.id }}"
                     id="alt{{ forloop.counter }}"/>
