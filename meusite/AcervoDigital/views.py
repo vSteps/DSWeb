@@ -5,7 +5,7 @@ from .forms import EmprestimoLivroForm, RegistroUsuarioForm, ContatoForm
 from .forms import LivroForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
-from .models import Livro, Item, Contato
+from .models import Livro, Contato
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.contrib import messages
@@ -18,13 +18,6 @@ class IndexView(View):
     def get(self, request, *args, **kwargs):
         livros = Livro.objects.all()
         return render(request, "acervo/index.html", {'livros': livros})
-
-class ItemView(View):
-    def get(self, request, *args, **kwargs):
-        id_item = kwargs['pk']
-        item = get_object_or_404(Item, pk=id_item)
-        return render(request, "acervo/item.html", {"item":item})
-
 
 class Listarlivros(View):
     def get(self, request, *args, **kwargs):
