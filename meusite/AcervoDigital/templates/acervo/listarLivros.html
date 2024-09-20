@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<h2>Livros Registrados</h2>
+<div style="text-align: center; ">
+    <a href="#disponiveis" class="btn" style="margin-right: 15px;">Livros Disponíveis</a>
+    <a href="#indisponiveis" class="btn-danger">Livros Indisponíveis</a>
+</div>
+
+<ul class="container_livros">
+    <container>
+        {% for livro in livros %}
+        <li class="livro">
+            <img src="{{ livro.imagem.url }}" alt="{{ livro.nome }}" style="max-width: 200px;">
+            <h3>{{ livro.nome }}</h3>
+            <p>Autor: {{ livro.autor }}</p>
+            <p style="font-size: 12px;">Ano: {{ livro.ano }}</p>
+            {% if livro.disponivel %}
+                <a href="{% url 'AcervoDigital:emprestarLivro' livro.id %}" class="btn">Pegar Emprestado</a>
+            {% else %}
+                <button class="btn-danger"> Indisponível</button>
+                <p>(emprestado para {{ livro.contato }})</p>
+            {% endif %}
+        </li>
+        {% empty %}
+        <li>Não há livros registrados.</li>
+        {% endfor %}
+    </container>
+</ul>
+<h2 id="disponiveis">Livros Disponíveis</h2>
+<ul class="container_livros">
+    <container>
+        {% for livro_disp in livros_disp %}
+        <li class="livro">
+            <img src="{{ livro_disp.imagem.url }}" alt="{{ livro_disp.nome }}" style="max-width: 200px;">
+            <h3>{{ livro_disp.nome }}</h3>
+            <p>Autor: {{ livro_disp.autor }}</p>
+            <p style="font-size: 12px;">Ano: {{ livro_disp.ano }}</p>
+            {% if livro_disp.disponivel %}
+                <a href="{% url 'AcervoDigital:emprestarLivro' livro_disp.id %}" class="btn">Pegar Emprestado</a>
+            {% else %}
+                <button class="btn-danger"> Indisponivel</button>
+                <p>(emprestado para {{ livro_disp.contato }})</p>
+            {% endif %}
+        </li>
+        {% empty %}
+        <li>Não há livros registrados.</li>
+        {% endfor %}
+    </container>
+</ul>
+<h2 id="indisponiveis">Livros Indisponiveis</h2>
+<ul class="container_livros">
+    <container>
+        {% for livro in livros_indisp %}
+        <li class="livro">
+            <img src="{{ livro.imagem.url }}" alt="{{ livro.nome }}" style="max-width: 200px;">
+            <h3>{{ livro.nome }}</h3>
+            <p>Autor: {{ livro.autor }}</p>
+            <p style="font-size: 12px;">Ano: {{ livro.ano }}</p>
+            {% if livro.disponivel %}
+                <a href="{% url 'AcervoDigital:emprestarLivro' livro.id %}" class="btn">Pegar Emprestado</a>
+            {% else %}
+                <button class="btn-danger"> Indisponível</button>
+                <p>(emprestado para {{ livro.contato }})</p>
+            {% endif %}
+        </li>
+        {% empty %}
+        <li>Não há livros registrados.</li>
+        {% endfor %}
+    </container>
+</ul>
+{% endblock %}

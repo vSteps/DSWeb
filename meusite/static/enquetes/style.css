@@ -62,7 +62,7 @@ li a::after{
     transition: .5s;
 }
 li a:hover::after{
-    transform: scaleX(1);
+    transform: scaleX(7);
 }
 
 #value{

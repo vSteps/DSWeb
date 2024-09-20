@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post" action="{% url 'login' %}">
+        <h2>Login</h2>
+        {% csrf_token %}
+        {{form}}
+        <button type="submit" id="botao">Login</button>
+        <input type="hidden" name="next" value="{{ next }}"/>
+        <p> Não tem uma conta? Crie uma <a href="{% url 'AcervoDigital:registrar' %}"> aqui </a></p>
+    </form>
+{% endblock %}
